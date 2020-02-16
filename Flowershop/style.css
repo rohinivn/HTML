@@ -1,0 +1,13 @@
+a{
+  text-decoration: none;
+}
+h1,h2{
+    color: rgb(17, 17, 141);
+}
+.rowspacing {
+  line-height:35px;
+}
+input[type=text],select,input[type=email]{
+  border:1px solid rgb(11, 71, 236);
+  box-shadow: rgb(1, 18, 66);
+}
