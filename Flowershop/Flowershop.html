@@ -3,17 +3,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FLOWER SHOP</title>
-    <link rel="stylesheet" href="style.css" >
+    <link rel="stylesheet" href="StyleSheet/style.css" >
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="JavaScript/Validation.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <h1>FLOWER SHOP ONLINE</h1>
-    <div style="background-color:rgb(173, 228, 44);padding: 20px;width:auto;"></div>
-    <div>
-    <div style="float:left; margin : 35px"><img src="flower.jpeg" style="border-radius:50%; padding : 15px 15px;" alt="flower image" height="200" width="200" /> </div>
-    <div style="margin-left: 50%;width: 59%;" >
-        <table width="40%">
+    <div class="greenbar"></div>
+    <img class="flowerimage"src="Images/flower.jpeg" alt="flower image" />
+    <div >
+        <table class="paymenttable">
             <tr>
                 <td colspan="2"><h2>Secure Payment Page</h2></td>
             </tr>
@@ -38,15 +38,14 @@
             </tr>
             <tr class="rowspacing">
                 <td><label>Amount</label></td>
-                <td><b>&euro;100.00</b></td><td><img src="visa.png" style="float:right;"alt="visa-image" width=70 height=70 /></td></tr>
+                <td><b>&euro;100.00</b></td><td><img class="visaimage"src="Images/visa.png"alt="visa-image"/></td></tr>
             </tr>
         </table>
     </div>
-</div>
-    <div style="background-color:rgb(255, 186, 122);margin-left: 50%;width: 41%;">
-        <table style="padding-bottom: 10px;">
+    <div>
+        <table class="tabledesign">
             <tr>
-                <td colspan="2" style="background: rgb(173, 228, 44);color: white;width: 100%;padding: 7px;">Card details<i style="position: relative;right: -535;color: black;"class='fas fa-question-circle'></i></td>
+                <td class="tablegreenbar"colspan="2">Card details<i style="position: relative;right: -535;color: black;"class='fas fa-question-circle'></i></td>
             </tr>
             <tr>
                 <td colspan="2">You must fill in fields marked with *</td>
@@ -55,18 +54,18 @@
                 <td>
                     <label>* Card number</label>
                 </td>
-                <td><input type="text" id="Card" size="70%"required></td>
+                <td><input class ="card" type="text" id="CardNumber" pattern="\d{16}" maxlength="16"required></td>
             </tr>
             <tr>
                 <td>
                     <label style="text-decoration: underline;text-decoration-color: black;">* Security code</label>
                 </td>
-                <td><input type="text" id="Card" required></td>
+                <td><input type="password" id="Security" maxlength="3" onchange="SecurityCodeValidation()" required><span id="ErrorSecurityCode"></span></td>
             </tr>
             <tr>
                 <td><label>* Expiry date</label></td>
                 <td>
-                    <select id="expirymonth" value=" "required>
+                    <select id="expirymonth" value=" " required>
                         <option value="01">01</option>
                         <option value="02">02</option>
                         <option value="03">03</option>
@@ -89,17 +88,17 @@
                         <option value="2005">2005</option>
                         <option value="2006">2006</option>
                         <option value="2007">2007</option>
-                      </select>
+                      </select><span id="date"></span>
                 </td>
             </tr>
             <tr>
                 <td>
                     <label>* Cardholder's name</label>
                 </td>
-                <td><input type="text" id="Cardholder" size="70%" required></td> 
+                <td><input type="text" id="Cardholdername" size="70" onchange="CardHolderNameValidation()" required><span id="errorHolderName"></span>  </td> 
             </tr>
             <tr>
-                <td colspan="2" style="background: rgb(173, 228, 44);color: white;width: 100%;padding: 7px;">Cardholder details<i style="position: relative;right: -495;color: black;"class='fas fa-question-circle'></i></td>
+                <td class="tablegreenbar" colspan="2">Cardholder details<i style="position: relative;right: -495;color: black;"class='fas fa-question-circle'></i></td>
             </tr>
             <tr>
                 <td colspan="2">You must fill in fields marked with *</td>
@@ -108,37 +107,37 @@
                 <td>
                     <label>* Address1</label>
                 </td>
-                <td><input type="text" id="Address1" size="70%"required></td>
+                <td><input type="text" id="Address1" size="70"required></td>
             </tr>
             <tr class="rowspacing">
                 <td>
                     <label >&nbsp;&nbsp;Address2</label>
                 </td>
-                <td><input type="text" id="Address2" size="70%"></td>
+                <td><input type="text" id="Address2" size="70"></td>
             </tr>
             <tr>
                 <td>
                     <label >&nbsp;&nbsp;Address3</label>
                 </td>
-                <td><input type="text" id="Address3" size="70%"></td>
+                <td><input type="text" id="Address3" size="70"></td>
             </tr>
             <tr>
                 <td>
                     <label >* Town/City</label>
                 </td>
-                <td><input type="text" id="town" size="70%"required></td>
+                <td><input type="text" id="town" size="70" onchange="TownValidation()" required><span id="errorTown"></span></td>
             </tr>
             <tr>
                 <td>
                     <label >&nbsp;&nbsp;Region</label>
                 </td>
-                <td><input type="text" id="Region" size="70%"></td>
+                <td><input type="text" id="Region" size="70"></td>
             </tr>
             <tr>
                 <td>
                     <label >*Postcode/Zipcode</label>
                 </td>
-                <td><input type="text" id="pincode" size="30%"required></td>
+                <td><input type="text" id="pincode" pattern ="\d" size="30" maxlength="6"required></td>
             </tr>
             <tr>
                 <td>
@@ -155,44 +154,44 @@
                 <td>
                     <label >&nbsp;&nbsp;Telephone</label>
                 </td>
-                <td><input type="text" id="phone" size="30%"></td>
+                <td><input type="tel" id="phone" pattern="/d" maxlength="10" size="30"></td>
             </tr>
             <tr>
                 <td>
                     <label >&nbsp;&nbsp;Fax</label>
                 </td>
-                <td><input type="text" id="fax" size="30%"></td>
+                <td><input type="text" id="fax" pattern="/d" maxlength="10" size="30"></td>
             </tr>
             <tr>
                 <td>
                     <label >* Email</label>
                 </td>
-                <td><input type="email" id="email" size="60%"required></td>
+                <td><input type="text" id="email" size="70" onchange="EmailValidation()" required><span id="errorEmail"></span></td>
             </tr>
         </table>
     </div>
-    <div style="margin-left: 50%;">
-    <p><i style="font-size: 15px;"class="material-icons">&#xe042;</i><a href="#">START AGAIN</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">MAKE PAYMENT</a><i style="font-size: 18px;"class="material-icons">&#xe8b9;</i></p>
-    <p><i style='font-size:15px' class='fas'>&#xf057;</i><a href="#">CANCEL</a></p>
-    <hr style="border-color:rgb(122,138,34);">
+    <div style="margin-left: 40%;">
+    <i class="material-icons">&#xe042;</i><button type="reset">START AGAIN</button><button ondblclick="Validation()"type="submit"style="position: relative;right:-150">MAKE PAYMENT</button><i style="position: relative;right:-150" class="material-icons">&#xe8b9;</i><br/>
+    <i class='fas'>&#xf057;</i><button type="button">CANCEL</button>
+    <hr class="horizontal">
     </div>
-    <div style="margin-left: 50%;">
+    <div style="margin-left: 40%;">
         <table>
             <tr>
-                <td style="color: blue;"colspan="2">Refunds and Returns</td>
+                <td class="refund"colspan="2">Refunds and Returns</td>
             </tr>
             <tr>
-                <td style="color: blue;font-size: small;"  >For more information visit our <a href="#" style="text-decoration: underline;">Refunds and Returns Policy.</a></td>
+                <td class="refund"style="font-size: small;"  >For more information visit our <a href="#" style="text-decoration: underline;">Refunds and Returns Policy.</a></td>
             </tr>
             <tr>
-               <td colspan="1" style="color: blue;font-size: small;">payments powerded by</td> 
+               <td colspan="1" style="color:blue;font-size: small;">payments powerded by</td> 
                <td rowspan="2"style="font-size:small">For help with your payment visit the <a href="#" style="text-decoration: underline;text-decoration-color: black;color:black;">WorldPay help</a></td>
             </tr>
             <tr>
-                <td colspan="1" style="color: blue;font-size: large;">WorldPay</td>    
+                <td colspan="1" style="color:blue;font-size: large;"><b>WorldPay</b></td>    
             </tr>
         </table>
     </div>
-    <div style="background-color:rgb(173, 228, 44);"><h4 style="color:rgb(17,17,141);font-size:60px;width: auto;">Thank you for shopping at Flowershop.Have a nice day</h4></div>
+    <div><footer><h4>Thank you for shopping at Flowershop.Have a nice day</h4></footer></div>
 </body>
 </html>
